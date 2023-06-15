@@ -1,9 +1,9 @@
 import Button from '@/components/ui/Button'
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
-     <Button>hello</Button>
+     <Button variant={'default'}>Hello</Button>
     </div>
   )
 }
