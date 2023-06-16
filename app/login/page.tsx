@@ -2,6 +2,7 @@
 
 import Button from "@/components/ui/Button"
 import { googleLogin } from '@/lib/firebase'
+import { useRouter } from "next/navigation"
 import { FC, useState } from "react"
 import { toast } from "react-hot-toast"
 
@@ -13,7 +14,14 @@ const Page:FC<Props> = () => {
   const loginWithGoogle = async ()=>{
     setIsLoading(true);
     try {
-      await googleLogin
+       const user:any = await googleLogin()
+      if(user){
+        console.log(user)
+        const router = useRouter()
+        router.push('/chat')
+      }
+      console.log(user)
+      toast.success(`user:${user.email}`)
     } catch (error) {
       toast.error('Error logging in with google')
     } finally{
